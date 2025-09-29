@@ -3,6 +3,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+"""
+A dataset processor for the Titanic dataset.
+Handles cleansing, mapping categorical to numerical values, preprocessing, and visualization.
+Methods:
+- cleanse: Cleanses the dataset by handling missing values and dropping unnecessary columns.
+- map_categorical_to_numerical: Maps categorical columns to numerical values.
+- preprocess: Preprocesses both training and testing datasets.
+- heatmap: Generate heatmap of correlations between numerical features.
+- visualize: Generate plots for Survived vs Sex, Pclass, Fare, and Embarked.
+"""
 class TitanicDataset:
     def __init__(
             self,
@@ -12,6 +22,7 @@ class TitanicDataset:
         self.drop_threshold = drop_threshold
         self.dropped_columns = dropped_columns
 
+    """Cleanses the dataset by handling missing values and dropping unnecessary columns."""
     def cleanse(self, df):
         for col in df.columns:
             # Drop columns with too many missing values
@@ -29,7 +40,8 @@ class TitanicDataset:
 
         df = df.drop(self.dropped_columns, axis=1)
         return df
-    
+
+    """Maps categorical columns to numerical values.""" 
     def map_categorical_to_numerical(self, df, columns=['Sex', 'Embarked']):
         for col in columns:
             sex_values = sorted(df[col].unique())
@@ -38,6 +50,7 @@ class TitanicDataset:
 
         return df
 
+    """Preprocesses both training and testing datasets."""
     def preprocess(self, train_dataset, test_dataset):
         train_dataset = self.cleanse(train_dataset)
         test_dataset = self.cleanse(test_dataset)
@@ -46,11 +59,13 @@ class TitanicDataset:
         test_dataset = self.map_categorical_to_numerical(test_dataset)
 
         return train_dataset, test_dataset
-    
+
+    """Generate heatmap of correlations between numerical features."""
     def heatmap(self, df):
         df = df.select_dtypes(include=[np.number])
         sns.heatmap(df.corr(), cmap='coolwarm', vmin=-1, vmax=1, annot=True)       
 
+    """Generate plot for Survived vs Sex, Pclass, Fare, and Embarked."""
     def visualize(self, df):
         fig, axes = plt.subplots(2, 2, figsize=(15, 15))
 

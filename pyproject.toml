@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "titanic-classifier"
+version = "0.1.0"
+description = "A machine learning project to predict Titanic passenger survival"
+readme = "README.md"
+license = {file = "LICENSE.txt"}
+authors = [
+    {name = "Thi Bao Han Nguyen", email = "canndynew11@gmail.com"},
+]
+requires-python = ">=3.8"
+
+dependencies = [
+    "numpy>=2.0.0",
+    "pandas>=2.0.0",
+    "scikit-learn>=1.0.0",
+    "matplotlib>=3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "jupyter",
+    "ipykernel>=6.0.0",
+    "ipython>=8.0.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.txt", "*.md"]
