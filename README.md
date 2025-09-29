@@ -28,6 +28,9 @@ pip install -r requirements.txt
 
 ## Usage
 
+You can simply open the Jupyter Notebook file at `notebook.ipynb` in the root directory of the project.
+
+
 ```python
 import numpy as np
 import pandas as pd
