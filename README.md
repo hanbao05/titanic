@@ -29,6 +29,9 @@ pip install -r requirements.txt
 ## Usage
 
 ```python
+import numpy as np
+import pandas as pd
+
 from src.titanic import TitanicClassifier, TitanicDataset
 
 raw_train_df = pd.read_csv('data/train.csv')
